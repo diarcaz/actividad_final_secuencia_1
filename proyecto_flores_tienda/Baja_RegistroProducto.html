@@ -1,0 +1,69 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <title>Baja del Registro de Productos</title>
+    </head>
+    <body>
+        <h1>Baja del Registro de Productos</h1>
+        <form id="formulario_producto">
+            <label for="id">ID:</label>
+            <input type="number" id="id" class="w3-input" name="id" required>
+            <br>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="w3-input" name="nombre" required>
+            <br>
+            <label for="categoria">Categoría:</label>
+            <input type="text" id="categoria" class="w3-input" name="categoria" required>
+            <br>
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" class="w3-input" name="precio" step="0.01" required>
+            <br>
+            <label for="cantidad_en_stock">Cantidad en Stock:</label>
+            <input type="number" id="cantidad_en_stock" class="w3-input" name="cantidad_en_stock" required>
+            <br>
+            <label for="proveedor">Proveedor:</label>
+            <input type="text" id="proveedor" class="w3-input" name="proveedor" required>
+            <br>
+            <button type="button" onclick="eliminarProducto()">Eliminar Producto</button>
+            <button type="button" onclick="goBack()">Regresar</button>
+        </form>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+
+            function eliminarProducto() {
+                let id = document.getElementById("id").value;
+                let nombre = document.getElementById("nombre").value;
+                let categoria = document.getElementById("categoria").value;
+                let precio = document.getElementById("precio").value;
+                let cantidadEnStock = document.getElementById("cantidad_en_stock").value;
+                let proveedor = document.getElementById("proveedor").value;
+
+                let parametros = `?id=${id}&nombre=${nombre}&categoria=${categoria}&precio=${precio}&cantidad_en_stock=${cantidadEnStock}&proveedor=${proveedor}`;
+
+                let request = new Request('Baja_RegistroProducto.php' + parametros, {
+                    method: 'GET',
+                    headers: {'Content-Type':'application/x-www-form-urlencoded'}
+                });
+
+                fetch(request).then(function(returnedValue) {
+                    if(returnedValue.ok) {
+                        console.log("Operación correcta");
+                        returnedValue.text().then((txt) => {
+                            console.log('Respuesta: ', txt);
+                            // Puedes realizar acciones con la respuesta aquí si es necesario
+                        });
+                    } else {
+                        console.log("Error en la operación");
+                    }
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+            }
+        </script>
+    </body>
+    </html>

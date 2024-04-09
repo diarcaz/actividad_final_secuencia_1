@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Menú de Tienda</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        /* Estilos adicionales personalizados */
+        .menu-bar {
+            display: flex;
+            flex-direction: column; /* Los elementos se colocan uno debajo del otro */
+            height: 100vh; /* Altura del menú igual a la altura de la ventana */
+            background-color: #5b5a5a; /* Color de fondo */
+            color: white; /* Color del texto */
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column; /* Los elementos se colocan uno debajo del otro */
+            align-items: center; /* Centra horizontalmente los elementos */
+            margin-top: auto; /* Mueve los elementos al centro vertical */
+        }
+
+        .menu-logo {
+            margin-top: 20px; /* Margen superior para separar del borde */
+            margin-left: 20px; /* Margen izquierdo */
+            align-self: flex-start; /* Alinea el elemento al principio del contenedor */
+        }
+
+        .menu-logo img {
+            height: 100px;
+            width: auto;
+            margin-bottom: 10px; /* Espacio entre el texto y el logo */
+        }
+
+        .w3-bar-item {
+            margin-bottom: 10px; /* Espacio entre los elementos del menú */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menú con W3.CSS -->
+<div class="menu-bar">
+    <!-- Nombre y Logo -->
+    <div class="menu-logo">
+        <span>Tu Tienda</span>
+        <img src="logo.png" alt="Logo"><br>
+    </div>
+
+    <!-- Elementos del Menú -->
+    <div class="menu-items">
+        <a href="RegristroProducto.html" class="w3-bar-item w3-button">Registro de Producto</a>
+        <a href="Baja_RegistroProducto.html" class="w3-bar-item w3-button"> Baja del Registro de Producto</a>
+        <a href="Cambios_RegistroProducto.html" class="w3-bar-item w3-button"> Cambio del Registro de Producto</a>
+        <a href="Listado_RegistroProducto.html" class="w3-bar-item w3-button"> Listado del Registro de Producto</a>
+        <a href="ProcesoVenta.html" class="w3-bar-item w3-button">Proceso de Venta</a>
+        <a href="Baja_ProcesoVenta.html" class="w3-bar-item w3-button">Baja de ProcesoVenta</a>
+        <a href="Cambios_ProcesoVenta.html" class="w3-bar-item w3-button">Cambios de ProcesoVenta</a>
+        <a href="Listado_ProcesoVenta.html" class="w3-bar-item w3-button">Listado de ProcesoVenta</a>
+        <a href="GestionClientes.html" class="w3-bar-item w3-button">Gestión de Clientes</a>
+        <a href="Baja_GestionCliente.html" class="w3-bar-item w3-button">Baja de GestionCliente</a>
+        <a href="Cambios_GestionCliente.html" class="w3-bar-item w3-button">Cambios de GestionCliente</a>
+        <a href="Listado_GestionCliente.html" class="w3-bar-item w3-button">Listado de GestionCliente</a>
+    </div>
+</div>
+
+</body>
+</html>

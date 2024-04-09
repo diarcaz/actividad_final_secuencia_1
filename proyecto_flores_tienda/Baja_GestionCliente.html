@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Baja de Servicio al Cliente</title>
+    <style></style>
+</head>
+<body>
+    <h1>Baja de Servicio al cliente</h1>
+    <form id="formulario_cliente">
+        <label for="id_cliente">ID de cliente:</label>
+        <input type="number" id="id_cliente" class="w3-input"  name="id_cliente" required>
+        <br>
+        <label for="nombre_cliente">Nombre:</label>
+        <input type="text" id="nombre_cliente" class="w3-input" name="nombre_cliente" required>
+        <br>
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" class="w3-input" name="direccion" required>
+        <br>
+        <label for="num_telefono">Numero de telefono:</label>
+        <input type="number" id="num_telefono" class="w3-input" name="num_telefono" required>
+        <br>
+        <button type="button" id="btn_registrar">Registrar Cliente</button>
+        <button type="button" onclick="goBack()">Regresar</button>
+    </form>
+    <p id="mip"></p>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        window.onload = function() {
+            document.getElementById("btn_registrar").addEventListener("click", function() {
+                let id_cliente = document.getElementById("id_cliente").value;
+                let nombre_cliente = document.getElementById("nombre_cliente").value;
+                let direccion = document.getElementById("direccion").value;
+                let num_telefono = document.getElementById("num_telefono").value;
+
+                let parametros = `?&id_cliente=${id_cliente}&nombre_cliente=${nombre_cliente}&direccion=${direccion}&num_telefono=${num_telefono}`;
+
+                let request = new Request('Baja_GestionCliente.php' + parametros, {
+                    method: 'get',
+                    headers: {'Content-Type':'application/x-www-form-urlencoded'}
+                });
+
+                fetch(request).then(function(returnedValue) {
+                if(returnedValue.ok) {
+                    console.log("Operación de baja de cliente correcta");
+                    returnedValue.text().then((txt)=>{
+                        console.log('Respuesta: ', txt);
+                        // Puedes realizar acciones con la respuesta aquí si es necesario
+                    });
+                } else {
+                    console.log("Error en la operación de baja de cliente");
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+            });
+        };
+    </script>
+</body>
+</html>

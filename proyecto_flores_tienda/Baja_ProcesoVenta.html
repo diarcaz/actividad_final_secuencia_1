@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Baja de Proceso de venta</title>
+</head>
+<body>
+    <h1>Baja de Registro de venta</h1>
+    <form id="formulario_venta">
+        <label for="id_venta">ID venta:</label>
+        <input type="number" id="id_venta" class="w3-input" name="id_venta" required>
+        <br>
+        <label for="fecha_hora">Fecha y hora:</label>
+        <input type="datetime" id="fecha_hora" class="w3-input" name="fecha_hora" required>
+        <br>
+        <label for="total_venta">Total de la venta:</label>
+        <input type="number" id="total_venta" class="w3-input" name="total_venta" step="0.01" required>
+        <br>
+        <button type="button" id="btn_registrar">Registrar Venta</button>
+        <button type="button" onclick="goBack()">Regresar</button>
+    </form>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        document.getElementById("btn_registrar").addEventListener("click", function() {
+            let id_venta = document.getElementById("id_venta").value;
+            let fecha_hora = document.getElementById("fecha_hora").value;
+            let total_venta = document.getElementById("total_venta").value;
+
+            let parametros = `?id_venta=${id_venta}&fecha_hora=${fecha_hora}&total_venta=${total_venta}`;
+
+            let request = new Request('Baja_ProcesoVenta.php'+parametros, {
+                method: 'GET',
+                headers: {'Content-Type':'application/x-www-form-urlencoded'}
+            });
+
+            fetch(request).then(function(returnedValue) {
+                if(returnedValue.ok) {
+                    console.log("Operación de registro de venta correcta");
+                    returnedValue.text().then((txt)=>{
+                        console.log('Respuesta: ', txt);
+                        // Puedes realizar acciones con la respuesta aquí si es necesario
+                    });
+                } else {
+                    console.log("Error en la operación de registro de venta");
+                }
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+        });
+    </script>
+</body>
+</html>

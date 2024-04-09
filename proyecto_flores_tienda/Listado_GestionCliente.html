@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Producto</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+    <div class="w3-col l8 w3-padding">
+        <div class="w3-panel w3-cyan w3-padding-16">
+            Datos existentes
+        </div>
+        <table class="w3-table-all">
+            <thead>
+                <tr>
+                    <td>ID de cliente:</td>
+                    <td>Nombre:</td>
+                    <td>Direccion:</td>
+                    <td>Numero de telefono:</td>
+                </tr>
+            </thead>
+            <tbody id="datos">
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<script>
+    window.onload=function(){
+        fetch('http://localhost/sqlite-alumnos/proyecto_flores_tienda/Listado_GestionCliente.php')
+        .then(response=>{
+            if(response.ok){
+                response.json()
+               .then(function (datosjson){
+                    datos=datosjson.slice(0,10)
+                    let s="";
+                    datos.forEach(element => {
+                        s+=`
+                            <tr>
+                            <td>${element.id_cliente}</td>
+                            <td>${element.nombre_cliente}</td>
+                            <td>${element.direccion}</td>
+                            <td>${element.num_telefono}</td>
+                            </tr>
+                        `;
+                    });
+                    document.querySelector("#datos").innerHTML=s;
+                });
+            }
+        })
+    }
+</script>
+</html>
